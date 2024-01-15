@@ -3,17 +3,9 @@ import { defineProps, watch, reactive } from 'vue';
 import Nunca from './components/Nunca.vue';
 import Siempre from './components/Siempre.vue';
 
-
 const ver = reactive({
   mostrarSiempre: false,
   mostrarNunca: false
-});
-
-const verSiempre = reactive({
-  mostrar: false
-});
-const verNunca = reactive({
-  mostrar: false
 });
 
 const mostrarSiempre = () => {
