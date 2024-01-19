@@ -24,26 +24,25 @@ const ocultarNunca = () => {
 </script>
 
 <template>
-  <!--   <header>
-
-  </header> -->
+  <header>
+    <h1>¿Qué dijiste?</h1>
+  </header>
 
   <main>
-    <h1>¿Qué dijiste?</h1>
-    <div class="split left">
-      <div class="centered">
+    <!-- <div class="split left"> -->
+      <div class="centered full-withradius border">
         <a @click="mostrarSiempre" v-if="!ver.mostrarSiempre">SIEMPRE</a>
         <Siempre v-if="ver.mostrarSiempre" />
         <a @click="ocultarSiempre" v-if="ver.mostrarSiempre">Ocultar Siempre</a>
       </div>
-    </div>
-    <div class="split right">
-      <div class="centered">
+    <!-- </div>
+    <div class="split right"> -->
+      <div class="centered full-withradius border">
         <a @click="mostrarNunca" v-if="!ver.mostrarNunca">NUNCA</a>
         <Nunca v-if="ver.mostrarNunca" />
         <a @click="ocultarNunca" v-if="ver.mostrarNunca">Ocultar Nunca</a>
       </div>
-    </div>
+    <!-- </div> -->
   </main>
 </template>
 
@@ -51,7 +50,38 @@ const ocultarNunca = () => {
 header {
   line-height: 1.5;
 }
+.border {
+	font-size: 1.6rem;
+	display: grid;
+	place-items: center;
+	min-height: 200px;
+	border: 8px solid;
+	padding: 1rem;
+}
 
+.full-withradius {
+	position: relative;
+	background: #181818;
+
+	/*The background extends to the outside edge of the padding. No background is drawn beneath the border.*/
+	background-clip: padding-box;
+
+	border: solid 8px transparent;
+	border-radius: 0.8rem;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		margin: -8px; /* same as border width */
+		border-radius: inherit; /* inherit container box's radius */
+		background: linear-gradient(to left, turquoise, greenyellow);
+	}
+}
 .logo {
   display: block;
   margin: 0 auto 2rem;
