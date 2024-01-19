@@ -14,19 +14,15 @@ export default function useDB() {
             error.value = err.message;
         }
     }
-    /*
-    try{
-        const postDB = async () => {
-            const res = await axios.post(URL,{
-
-            }
-                
-                
-                );
+    const getDB = async () => {
+        const URL = 'http://localhost:3000/api/getAll';
+        try{
+            const res = await axios.get(URL);
+            data.value = res.data;
+        }
+        catch(err){
+            error.value = err.message;
         }
     }
-    catch(err){
-        error.value = err.message;
-    }*/
-    return { data, error, postDB };
+    return { data, error, postDB, getDB };
 }

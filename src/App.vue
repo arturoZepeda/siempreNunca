@@ -4,7 +4,7 @@ import Nunca from './components/Nunca.vue';
 import Siempre from './components/Siempre.vue';
 import useDB from './composables/useDB';
 
-const { data, error, postDB } = useDB();
+const { data, error, postDB, getDB} = useDB();
 
 const ver = reactive({
   mostrarSiempre: false,
@@ -24,6 +24,10 @@ const ocultarNunca = () => {
   ver.mostrarNunca = false;
 };
 
+const obteberDatos = () => {
+  getDB();
+};
+
 </script>
 
 <template>
@@ -35,7 +39,7 @@ const ocultarNunca = () => {
     <!-- <div class="split left"> -->
       <div class="centered full-withradius border">
         <a @click="mostrarSiempre" v-if="!ver.mostrarSiempre">SIEMPRE</a>
-        <Siempre v-if="ver.mostrarSiempre" />
+        <Siempre v-if="ver.mostrarSiempre"  @post-db="postDB"/>
         <a @click="ocultarSiempre" v-if="ver.mostrarSiempre">Ocultar Siempre</a>
       </div>
     <!-- </div>
@@ -47,6 +51,7 @@ const ocultarNunca = () => {
       </div>
     <!-- </div> -->
   </main>
+  <footer><a @click="obteberDatos">mostrar resultados</a></footer>
 </template>
 
 <style scoped>
