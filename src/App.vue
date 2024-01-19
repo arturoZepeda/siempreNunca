@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineProps, watch, reactive } from 'vue';
 import Nunca from './components/Nunca.vue';
-import Siempre from './components/Siempre.vue';
-import useDB from './composables/useDB';
+// @ts-ignore
+import useDB from './composables/usedb';
 
 const { data, error, postDB, getDB} = useDB();
 
@@ -136,3 +136,4 @@ header {
   /*background-color: red;*/
 }
 </style>
+./composables/useDB./composables/usedb
