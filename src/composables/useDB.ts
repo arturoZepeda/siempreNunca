@@ -5,12 +5,12 @@ export default function useDB() {
     const  error = ref(null);
     //const URL = 'https://siemprenunca.arturozepeda.xyz/posts';
     const URL = 'http://localhost:3000/api/post';
-    const postDB  = async (post) => {
+    const postDB  = async (post: any) => {
         try{
             const res = await axios.post(URL, post);
             data.value = res.data;
         }
-        catch(err){
+        catch(err: any){
             error.value = err.message;
         }
     }
@@ -20,7 +20,7 @@ export default function useDB() {
             const res = await axios.get(URL);
             data.value = res.data;
         }
-        catch(err){
+        catch(err: any){
             error.value = err.message;
         }
     }
