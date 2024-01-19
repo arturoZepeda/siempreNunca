@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const fechaActual = new Date().toISOString().slice(0, 10);
+const enviarPalabra = () => {
+  console.log('enviarPalabra');
+};
 </script>
 <template>
   <div>
     <h1>Siempre</h1>
     <p>¿Qué dijiste que siempre harías?</p>
-    <form @submit.prevent="submit" >
+    <form @submit.prevent="enviarPalabra" >
     <h2><label for="fecha">Fecha:</label></h2>
         <input type="date" id="fecha" readonly :value="fechaActual">
         <br>

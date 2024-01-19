@@ -2,6 +2,9 @@
 import { defineProps, watch, reactive } from 'vue';
 import Nunca from './components/Nunca.vue';
 import Siempre from './components/Siempre.vue';
+import useDB from './composables/useDB';
+
+const { data, error, postDB } = useDB();
 
 const ver = reactive({
   mostrarSiempre: false,
@@ -39,7 +42,7 @@ const ocultarNunca = () => {
     <div class="split right"> -->
       <div class="centered full-withradius border">
         <a @click="mostrarNunca" v-if="!ver.mostrarNunca">NUNCA</a>
-        <Nunca v-if="ver.mostrarNunca" />
+        <Nunca v-if="ver.mostrarNunca" @post-db="postDB"/>
         <a @click="ocultarNunca" v-if="ver.mostrarNunca">Ocultar Nunca</a>
       </div>
     <!-- </div> -->
