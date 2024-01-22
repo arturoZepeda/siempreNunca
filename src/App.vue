@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, watch, reactive } from 'vue';
 import Nunca from './components/Nunca.vue';
+import Siempre from './components/Siempre.vue';
 // @ts-ignore
 import useDB from './composables/usedb';
 

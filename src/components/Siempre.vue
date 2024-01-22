@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-const emit =defineEmits(['post-db']);
+
 const fechaActual = new Date().toISOString().slice(0, 10);
 const palabraSiempre = reactive({
   palabra: 'siempre',
   fecha: fechaActual,
   descripcion: ''
 });
+
+const emit = defineEmits(['post-db']);
+
 const enviarPalabra = () => {
   if (Object.values(palabraSiempre).some((value) => value === '')) {
     alert('Faltan datos');
