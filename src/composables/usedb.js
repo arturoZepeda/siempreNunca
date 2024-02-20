@@ -3,9 +3,9 @@ import { ref, computed } from 'vue';
 export default function useDB() {
     const data = ref([]);
     const  error = ref(null);
-    //const URL = 'https://siemprenunca.arturozepeda.xyz/posts';
-    const URL = 'https://localhost:3001/api/post';
+    const preUrl = 'https://apisiemprenunca.arturozepeda.xyz/api/';
     const postDB  = async (post) => {
+        const URL = preUrl + 'post';
         try{
             const res = await axios.post(URL, post);
             data.value = res.data;
@@ -15,7 +15,7 @@ export default function useDB() {
         }
     }
     const getDB = async () => {
-        const URL = 'http://localhost:3000/api/getAll';
+        const URL = preUrl + 'getAll';
         try{
             const res = await axios.get(URL);
             data.value = res.data;
