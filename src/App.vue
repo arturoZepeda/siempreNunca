@@ -5,7 +5,7 @@ import Siempre from './components/Siempre.vue';
 // @ts-ignore
 import useDB from './composables/usedb';
 
-const { data, error, postDB, getDB} = useDB();
+const { data, datos, error, postDB, getDB } = useDB();
 
 const ver = reactive({
   mostrarSiempre: false,
@@ -38,59 +38,71 @@ const obteberDatos = () => {
 
   <main>
     <!-- <div class="split left"> -->
-      <div class="centered full-withradius border">
-        <a @click="mostrarSiempre" v-if="!ver.mostrarSiempre">SIEMPRE</a>
-        <Siempre v-if="ver.mostrarSiempre"  @post-db="postDB"/>
-        <a @click="ocultarSiempre" v-if="ver.mostrarSiempre">Ocultar Siempre</a>
-      </div>
+    <div class="centered full-withradius border">
+      <a @click="mostrarSiempre" v-if="!ver.mostrarSiempre">SIEMPRE</a>
+      <Siempre v-if="ver.mostrarSiempre" @post-db="postDB" />
+      <a @click="ocultarSiempre" v-if="ver.mostrarSiempre">Ocultar Siempre</a>
+    </div>
     <!-- </div>
     <div class="split right"> -->
-      <div class="centered full-withradius border">
-        <a @click="mostrarNunca" v-if="!ver.mostrarNunca">NUNCA</a>
-        <Nunca v-if="ver.mostrarNunca" @post-db="postDB"/>
-        <a @click="ocultarNunca" v-if="ver.mostrarNunca">Ocultar Nunca</a>
-      </div>
+    <div class="centered full-withradius border">
+      <a @click="mostrarNunca" v-if="!ver.mostrarNunca">NUNCA</a>
+      <Nunca v-if="ver.mostrarNunca" @post-db="postDB" />
+      <a @click="ocultarNunca" v-if="ver.mostrarNunca">Ocultar Nunca</a>
+    </div>
     <!-- </div> -->
   </main>
-  <footer><a @click="obteberDatos">mostrar resultados</a></footer>
+  <footer>
+    <a @click="obteberDatos">mostrar resultados</a>
+    <ul v-if="datos">
+      <li v-for="dato in datos" :key="dato.id">
+        <strong> {{ dato.palabra }} </strong> - {{ dato.descripcion }} - <small> {{ dato.fecha }} </small>
+      </li>
+    </ul>
+
+  </footer>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
 }
+
 .border {
-	font-size: 1.6rem;
-	display: grid;
-	place-items: center;
-	min-height: 200px;
-	border: 8px solid;
-	padding: 1rem;
+  font-size: 1.6rem;
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  border: 8px solid;
+  padding: 1rem;
 }
 
 .full-withradius {
-	position: relative;
-	background: #181818;
+  position: relative;
+  background: #181818;
 
-	/*The background extends to the outside edge of the padding. No background is drawn beneath the border.*/
-	background-clip: padding-box;
+  /*The background extends to the outside edge of the padding. No background is drawn beneath the border.*/
+  background-clip: padding-box;
 
-	border: solid 8px transparent;
-	border-radius: 0.8rem;
+  border: solid 8px transparent;
+  border-radius: 0.8rem;
 
-	&:before {
-		content: "";
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: -1;
-		margin: -8px; /* same as border width */
-		border-radius: inherit; /* inherit container box's radius */
-		background: linear-gradient(to left, turquoise, greenyellow);
-	}
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -8px;
+    /* same as border width */
+    border-radius: inherit;
+    /* inherit container box's radius */
+    background: linear-gradient(to left, turquoise, greenyellow);
+  }
 }
+
 .logo {
   display: block;
   margin: 0 auto 2rem;
@@ -124,6 +136,7 @@ header {
   overflow-x: hidden;
   padding-top: 20px; */
 }
+
 /* Control the left side */
 .left {
   left: 50%;
@@ -137,4 +150,3 @@ header {
   /*background-color: red;*/
 }
 </style>
-./composables/useDB./composables/usedb
